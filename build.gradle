@@ -1,0 +1,73 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '2.3.0'
+    id 'io.qameta.allure' version '3.0.0'
+    id 'java'
+}
+
+group 'org.example.kotlin'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    agent {
+        canBeResolved = true
+        canBeConsumed = true
+    }
+}
+
+test {
+    useJUnitPlatform {
+        if (System.getProperty("TAGS")) {
+            includeTags System.getProperty("TAGS")
+        }
+    }
+
+    dependsOn("cleanTest")
+
+    //Pass system properties into JVM with tests
+    systemProperties(System.getProperties())
+}
+
+
+def allureVersion = '2.33.0',
+    junitVersion = '5.10.3',
+    platformVersion = '1.10.3',
+    selenideVersion = '7.14.0',
+    retrofit2Version = '3.0.0',
+    exposedVersion = "1.1.1"
+
+dependencies {
+    agent 'org.aspectj:aspectjweaver:1.9.22'
+    implementation 'org.aspectj:aspectjweaver:1.9.22'
+
+    implementation "org.junit.jupiter:junit-jupiter:$junitVersion"
+    implementation "org.junit.platform:junit-platform-launcher:$platformVersion"
+
+    implementation 'io.kotest:kotest-assertions-core:6.1.1'
+
+    implementation "com.codeborne:selenide:$selenideVersion"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofit2Version"
+    implementation 'com.squareup.retrofit2:converter-gson:3.0.0'
+//    implementation 'com.squareup.retrofit2:converter-jackson:3.0.0'
+    implementation 'com.google.code.gson:gson:2.13.2'
+//    implementation "tools.jackson.core:jackson-databind:3.1.0"
+//    implementation "tools.jackson.core:jackson-core:3.1.0"
+//    implementation "tools.jackson.module:jackson-module-kotlin:3.1.0"
+
+    implementation "io.qameta.allure:allure-okhttp3:$allureVersion"
+    implementation "io.qameta.allure:allure-junit5:$allureVersion"
+    implementation "io.qameta.allure:allure-selenide:$allureVersion"
+
+
+    //Database
+    implementation "org.postgresql:postgresql:42.7.10"
+    implementation "org.jetbrains.exposed:exposed-core:$exposedVersion"
+    implementation "org.jetbrains.exposed:exposed-jdbc:$exposedVersion"
+
+
+}
+
