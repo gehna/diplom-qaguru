@@ -24,7 +24,9 @@ object Config {
             browserVersion = properties.getRequiredProperty("browser.version"),
             frontendUrl = properties.getRequiredProperty("frontend.url"),
             backendUrl = properties.getRequiredProperty("backend.url"),
-            moonHost = properties.getRequiredProperty("moon.host"),
+            remoteEnabled = properties.getProperty("remote.enabled")?.trim()
+                ?.equals("true", ignoreCase = true) == true,
+            moonHost = properties.getProperty("moon.host")?.trim().orEmpty(),
             jdbcUrl = properties.getRequiredProperty("postgres.jdbcUrl"),
             username = properties.getRequiredProperty("postgres.username"),
             password = properties.getRequiredProperty("postgres.password"),
@@ -38,6 +40,7 @@ data class Props(
     val frontendUrl: String,
     val backendUrl: String,
     val moonHost: String,
+    val remoteEnabled: Boolean,
     val jdbcUrl: String,
     val username: String,
     val password: String
