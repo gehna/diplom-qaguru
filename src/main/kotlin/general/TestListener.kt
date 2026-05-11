@@ -5,6 +5,7 @@ import backend.controllers.Controllers
 import com.codeborne.selenide.Screenshots
 import com.codeborne.selenide.Selenide
 import io.qameta.allure.Attachment
+import org.example.backend.api.extention.Extensions.Companion.getAsObject
 import org.example.backend.helpers.AuthorizationHelper
 import org.example.backend.helpers.GarbageCollector
 
@@ -40,24 +41,32 @@ class TestListener : Controllers(), TestExecutionListener {
         println("|------ Garbage collector -------|")
         GarbageCollector.order.forEach { id ->
             orders.deleteOrder(token = authHelper.getAdminToken(), id = id)
-                .also { println("Deleted order: $id") }
+                .also {
+                    val resp = orders.deleteOrder(token = authHelper.getAdminToken(), id = id)
+                    println("Delete order $id -> code=${resp.code()} success=${resp.isSuccessful}")
+                    println("Deleted order: $id")
+                }
         }
 
-        GarbageCollector.user.forEach { id ->
-            users.deleteUserById(token = authHelper.getAdminToken(), id = id)
-                .also {println("Deleted user: $id")}
-        }
+
+
+//        GarbageCollector.user.forEach { id ->
+//            users.deleteUserById(token = authHelper.getAdminToken(), id = id)
+//                .also { println("Deleted user: $id") }
+//        }
 
         GarbageCollector.products.forEach { id ->
             products.deleteProductById(token = authHelper.getAdminToken(), id = id)
                 .also { println("Deleted product: $id") }
         }
 
-        /*        users.getAllUsers(token = authHelper.getAdminToken(), offset = 1, limit = 50).getAsObject().forEach { user ->
+        users.getAllUsers(token = authHelper.getAdminToken(), offset = 0, limit = 50).getAsObject().forEach { user ->
             if (user.email.contains("@autotest.com")) {
                 users.deleteUserById(token = authHelper.getAdminToken(), id = user.id)
-                    .also {println("Deleted user: ${user.email}")}*/
+                    .also { println("Deleted user: ${user.email}") }
+            }
 
+        }
     }
 
     override fun executionFinished(testIdentifier: TestIdentifier, testExecutionResult: TestExecutionResult) {

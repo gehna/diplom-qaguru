@@ -14,7 +14,7 @@ class UserHelper : Controllers() {
         val ts = System.currentTimeMillis()
         return UserCredentials(
             username = "user_$ts",
-            email = "user_$ts@test.ru",
+            email = "user_$ts@autotest.com",
             password = "Password123!"
         )
     }

@@ -11,5 +11,5 @@ data class CreateUserRequest (
 fun defaultUser() = CreateUserRequest(
     username = "user_${Random.nextInt(10000)}",
     password = "random",
-    email = "${Random.nextInt(10000)}@autotest.com"
+    email = "email_${Random.nextInt(10000)}@autotest.com"
 )
