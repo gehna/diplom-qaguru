@@ -40,7 +40,7 @@ class OrdersPage {
         return this
     }
 
-    @Step("Get products object list")
+//    @Step("Get products object list")
     fun getOrderItems(): List<OrderItem> {
         orderItems.shouldHave(CollectionCondition.sizeGreaterThan(0)) //добавил еще одно ожидание из-за RC
         return OrderItems().getItems()

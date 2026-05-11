@@ -32,7 +32,8 @@ import org.openqa.selenium.remote.DesiredCapabilities
 open class BaseUiTest {
     init {
         val props = Config.getProps
-        Configuration.baseUrl = props.frontendUrl.trimEnd('/') + "/"
+        Configuration.baseUrl = props.frontendUrl
+//        Configuration.baseUrl = props.frontendUrl.trimEnd('/') + "/"
         Configuration.timeout = 15_000
         Configuration.pageLoadStrategy = "normal"
         Configuration.reopenBrowserOnFail = true
