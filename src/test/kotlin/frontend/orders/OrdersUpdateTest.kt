@@ -22,7 +22,7 @@ class OrdersUpdateTest : BaseUiTest() {
     val authHelper = AuthorizationHelper()
 
     @Test
-    @DisplayName("Create, and check order status via UI")
+    @DisplayName("Создать и проверить статус заказа через UI")
     @Tags(Tag("frontend"), Tag("regress"), Tag("orders"))
     fun orderStatusCheck() {
         val testOrder = orderHelper.createOrderWithProduct()
@@ -39,7 +39,7 @@ class OrdersUpdateTest : BaseUiTest() {
     }
 
     @Test
-    @DisplayName("Create and update order status, check updated status via UI")
+    @DisplayName("Создать и обновить статус заказа, проверить новый статус через UI")
     @Tags(Tag("frontend"), Tag("regress"), Tag("orders"))
     fun orderStatusUpdateCheck() {
 

@@ -82,6 +82,22 @@ class JDBCHelper {
             }
         }
     }
+
+    fun waitForUserByEmail(
+        email: String,
+        timeoutMs: Long = 10_000,
+        pollMs: Long = 250
+    ): Users {
+        val startedAt = System.currentTimeMillis()
+
+        while (System.currentTimeMillis() - startedAt < timeoutMs) {
+            val user = getUsers().firstOrNull { it.email == email }
+            if (user != null) return user
+            Thread.sleep(pollMs)
+        }
+
+        error("User with email '$email' was not found in DB within ${timeoutMs}ms")
+    }
 }
 
 fun ResultSet.toProduct(): Product = Product(
