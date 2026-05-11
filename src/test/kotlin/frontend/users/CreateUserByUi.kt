@@ -35,6 +35,9 @@ class CreateUserByUi: BaseUiTest() {
         val username = "user_${Random.nextInt(100_000)}"
         val email = "user_${Random.nextInt(100_000)}@autotest.com"
         val password = "Password123!"
+
+        println(mainPage.navigateHeader().getLinks())
+
         mainPage.navigateHeader().clickLink("Join")
         createAccountPopup.joinAs(username, email, password)
         mainPage.navigateHeader().checkUserPic().shouldBeTrue()

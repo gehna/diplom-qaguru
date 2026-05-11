@@ -51,11 +51,18 @@ open class BaseUiTest {
             capabilities.setCapability("selenoid:options", selenoidOptions)
             Configuration.browserCapabilities = capabilities
         }
+
+        println("[BaseUiTest] frontendUrl=${props.frontendUrl}")
+        println("[BaseUiTest] baseUrl=${Configuration.baseUrl}")
+        println("[BaseUiTest] remote=${Configuration.remote}")
+        println("[BaseUiTest] browser=${Configuration.browser} version=${Configuration.browserVersion}")
     }
 
     @BeforeEach
     fun openBrowser() {
         Selenide.open("/")
+
+        println("[BaseUiTest] title=${Selenide.title()}")
     }
 
     @AfterEach
