@@ -7,33 +7,10 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.openqa.selenium.remote.DesiredCapabilities
 
-//open class BaseUiTest {
-//
-//    init {
-//        Configuration.baseUrl = "http://localhost:4000/"
-//        Configuration.timeout = 15_000
-//        Configuration.pageLoadStrategy = "normal"
-//        Configuration.reopenBrowserOnFail = true
-////        Configuration.browser = DriverProvider::class.java.name
-//    }
-//
-//    @BeforeEach
-//    fun openBrowser() {
-//        Selenide.open("/")
-//    }
-//
-//    @AfterEach
-//    fun clearBrowser() {
-//        Selenide.clearBrowserCookies()
-//        Selenide.clearBrowserLocalStorage()
-//    }
-//}
-
 open class BaseUiTest {
     init {
         val props = Config.getProps
         Configuration.baseUrl = props.frontendUrl
-//        Configuration.baseUrl = props.frontendUrl.trimEnd('/') + "/"
         Configuration.timeout = 15_000
         Configuration.pageLoadStrategy = "normal"
         Configuration.reopenBrowserOnFail = true

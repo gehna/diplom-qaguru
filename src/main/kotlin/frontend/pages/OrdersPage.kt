@@ -46,11 +46,6 @@ class OrdersPage {
         return OrderItems().getItems()
     }
 
-//    @Step("Get error message")
-//    fun getOrderErrorMessage(expectedMessage: String): String {
-//        return orderErrorMessage.text
-//    }
-
     @Step("Get error message")
     fun getOrderErrorMessage(expectedMessage: String): String {
         orderErrorMessage.shouldHave(exactText(expectedMessage))

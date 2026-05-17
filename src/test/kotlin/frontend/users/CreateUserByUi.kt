@@ -21,13 +21,6 @@ class CreateUserByUi: BaseUiTest() {
     private val joinDialogPopup = JoinDialogPopup()
     private val createAccountPopup = CreateAccountPopup()
 
-//    @Test
-//    fun createUserViaUi() {
-//        val creds = userHelper.generateUser()
-//        userHelper.createUserViaUi(creds)
-//    }
-
-
     @Test
     @DisplayName("Создать нового пользователя через UI с валидными кредами")
     @Tags(Tag("frontend"), Tag("regress"), Tag("users"), Tag("smoke"))

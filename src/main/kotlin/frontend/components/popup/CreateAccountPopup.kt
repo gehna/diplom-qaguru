@@ -22,10 +22,6 @@ class CreateAccountPopup {
         submitButton.click()
         return this
     }
-//    @Step("Error text check for invalid credentials input")
-//    fun getErrorMessage(expectedError: String): String {
-//        return errorMessage.text
-//    }
 
     @Step("Error text check for invalid credentials input")
     fun getErrorMessage(expectedError: String): String {

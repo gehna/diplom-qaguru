@@ -39,6 +39,13 @@ class TestListener : Controllers(), TestExecutionListener {
         Selenide.closeWebDriver()
 
         println("|------ Garbage collector -------|")
+        users.getAllUsers(token = authHelper.getAdminToken(), offset = 0, limit = 50).getAsObject().forEach { user ->
+            if (user.email.contains("@autotest.com")) {
+                users.deleteUserById(token = authHelper.getAdminToken(), id = user.id)
+                    .also { println("Deleted user: ${user.email}") }
+            }
+        }
+
         GarbageCollector.order.forEach { id ->
             orders.deleteOrder(token = authHelper.getAdminToken(), id = id)
                 .also {
@@ -48,24 +55,9 @@ class TestListener : Controllers(), TestExecutionListener {
                 }
         }
 
-
-
-//        GarbageCollector.user.forEach { id ->
-//            users.deleteUserById(token = authHelper.getAdminToken(), id = id)
-//                .also { println("Deleted user: $id") }
-//        }
-
         GarbageCollector.products.forEach { id ->
             products.deleteProductById(token = authHelper.getAdminToken(), id = id)
                 .also { println("Deleted product: $id") }
-        }
-
-        users.getAllUsers(token = authHelper.getAdminToken(), offset = 0, limit = 50).getAsObject().forEach { user ->
-            if (user.email.contains("@autotest.com")) {
-                users.deleteUserById(token = authHelper.getAdminToken(), id = user.id)
-                    .also { println("Deleted user: ${user.email}") }
-            }
-
         }
     }
 

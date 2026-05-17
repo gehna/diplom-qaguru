@@ -8,9 +8,6 @@ import kotlin.use
 
 class JDBCHelper {
 
-//    private val jdbcUrl = "jdbc:postgresql://localhost:5432/playground"
-//    private val username: String = "postgres"
-//    private val password: String= "postgres"
     private val jdbcUrl = Config.getProps.jdbcUrl
     private val username = Config.getProps.username
     private val password = Config.getProps.password

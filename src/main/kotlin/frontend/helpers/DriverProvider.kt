@@ -35,5 +35,3 @@ open class DriverProvider : WebDriverProvider {
             .apply { this.fileDetector = LocalFileDetector() }
     }
 }
-
-//https://user1:1234@selenoid.autotests.cloud/wd/hub
